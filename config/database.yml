@@ -1,0 +1,24 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  password: <%= Rails.application.credentials.db_password %>
+
+development:
+  <<: *default
+  database: blog_dev
+  username: <%= Rails.application.credentials.db_username %>
+  host: <%= Rails.application.credentials.db_host %>
+ 
+test:
+  <<: *default
+  database: blog_test
+  username: <%= Rails.application.credentials.db_username %>
+  host: <%= Rails.application.credentials.db_host %>
+
+production:
+  <<: *default
+  database: blog_prod
+  username: <%= Rails.application.credentials.db_username %>
+  host: <%= Rails.application.credentials.db_host %>
